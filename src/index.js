@@ -9,7 +9,7 @@ app.listen(3000, async () => {
     await connect();
     console.log("MondoDB connected");
     const tweet = await Tweet.create({
-        content: 'First tweet',
+        content: 'Second tweet',
         userEmail: 'a@b.com'
     });
     console.log(tweet);
