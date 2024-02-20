@@ -14,8 +14,11 @@ app.listen(3000, async () => {
     // });
     //  const tweets = await Tweet.find({ userEmail: 'a@b.com' });
     const tweetRepo = new TweetRepository();
-    const tweet = await tweetRepo.update('65d47cd5c7289c4e9d93e77b', { content: 'The updated Content 02' });
-    console.log(tweet);
+    const tweet = await tweetRepo.create({ content: 'My tweet' });
+    console.log(tweet);   //before comment
+    tweet.comments.push({ content: 'first comment' });
+    await tweet.save();
+    console.log(tweet);  //after comment
 })
 
 

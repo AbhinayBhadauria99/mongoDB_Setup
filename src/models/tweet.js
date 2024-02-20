@@ -9,7 +9,15 @@ const tweetSchema = new mongoose.Schema({
     },
     userEmail: {
         type: String
-    }
+    },
+    comments: [
+        {
+            content: {
+                type: String,
+                required: true
+            }
+        }
+    ]
 }, { timestamps: true });
 
 const Tweet = mongoose.model('Tweet', tweetSchema); //This model name i.e. "Tweet" will become "Tweets" . Its default behaviour of ODMs and ORMs 
