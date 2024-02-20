@@ -3,7 +3,7 @@ const connect = require('./config/database');
 const app = express();
 
 const TweetRepository = require('./repository/tweet-repository');
-
+const Comment = require('./models/comment');
 app.listen(3000, async () => {
     console.log("Server started on PORT: 3000 ");
     await connect();
@@ -14,11 +14,12 @@ app.listen(3000, async () => {
     // });
     //  const tweets = await Tweet.find({ userEmail: 'a@b.com' });
     const tweetRepo = new TweetRepository();
-    const tweet = await tweetRepo.create({ content: 'My tweet' });
-    console.log(tweet);   //before comment
-    tweet.comments.push({ content: 'first comment' });
+    const tweet = await tweetRepo.create({ content: "Tweet with content schema 2" });
+    console.log(tweet);
+    const comment = await Comment.create({ content: 'new comment 2' });
+    tweet.comments.push(comment);
     await tweet.save();
-    console.log(tweet);  //after comment
+    console.log(tweet);
 })
 
 
